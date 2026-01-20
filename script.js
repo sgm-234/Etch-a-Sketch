@@ -1,8 +1,5 @@
-const cont = document.querySelector("#container");
-
-const gridsize = 16;
-const containserSize = 960;
-const squareSize = containserSize/ gridsize;
+const container = document.querySelector("#container");
+const button = document.querySelector("#resetBtn");
 
 function createGrid(size) {
     container.innerHTML = "";
@@ -17,8 +14,22 @@ function createGrid(size) {
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
 
+        // initialize state
+        square.dataset.opacity = 0;
+        square.dataset.r = Math.floor(Math.random() * 256);
+        square.dataset.g = Math.floor(Math.random() * 256);
+        square.dataset.b = Math.floor(Math.random() * 256);
+
         square.addEventListener("mouseenter", () => {
-            square.style.backgroundColor = "black";
+            let opacity = Number(square.dataset.opacity);
+
+            if (opacity < 1) {
+                opacity += 0.1;
+                square.dataset.opacity = opacity;
+
+                square.style.backgroundColor =
+                    `rgba(${square.dataset.r}, ${square.dataset.g}, ${square.dataset.b}, ${opacity})`;
+            }
         });
 
         container.appendChild(square);
@@ -27,37 +38,12 @@ function createGrid(size) {
 
 createGrid(16);
 
-
-const button = document.querySelector("#resetBtn");
-
 button.addEventListener("click", () => {
-    let newSize = prompt("Enter number of squares per side (max 100):");
-
-    newSize = Number(newSize);
+    const newSize = Number(prompt("Enter number of squares per side (max 100):"));
 
     if (newSize > 0 && newSize <= 100) {
         createGrid(newSize);
     } else {
         alert("Please enter a number between 1 and 100.");
-    }
-});
-
-square.addEventListener("mouseenter", () => {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-
-    square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-});
-
-square.dataset.opacity = 0;
-
-square.addEventListener("mouseenter", () => {
-    let currentOpacity = Number(square.dataset.opacity);
-
-    if (currentOpacity < 1) {
-        currentOpacity += 0.1;
-        square.dataset.opacity = currentOpacity;
-        square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
     }
 });
