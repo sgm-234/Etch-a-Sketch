@@ -49,3 +49,15 @@ square.addEventListener("mouseenter", () => {
 
     square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 });
+
+square.dataset.opacity = 0;
+
+square.addEventListener("mouseenter", () => {
+    let currentOpacity = Number(square.dataset.opacity);
+
+    if (currentOpacity < 1) {
+        currentOpacity += 0.1;
+        square.dataset.opacity = currentOpacity;
+        square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+    }
+});
