@@ -1,11 +1,41 @@
-#container{
-    display:flex;
-    flex-wrap:wrap;
-    width: 960px;
-    height: 960px;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  gap: 20px;
 }
 
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  height: 960px;
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
 
 .square {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #2a2a2a;
+  transition: background-color 0.2s;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e90ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #63a4ff;
 }
